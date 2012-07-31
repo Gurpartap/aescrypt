@@ -3,8 +3,8 @@
 Gem::Specification.new do |gem|
   gem.authors       = ["Gurpartap Singh"]
   gem.email         = ["contact@gurpartap.com"]
-  gem.description   = "Simple Ruby AES encryption / decryption gem"
-  gem.summary       = "A simple and opinionated AES encrypt / decrypt Ruby gem that just works."
+  gem.description   = "Simple AES encryption / decryption for Ruby"
+  gem.summary       = "AESCrypt is a simple to use, opinionated AES encryption / decryption Ruby gem that just works."
   gem.homepage      = "http://github.com/Gurpartap/aescrypt"
 
   gem.files         = `git ls-files`.split("\n")
