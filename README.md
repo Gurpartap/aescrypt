@@ -45,7 +45,7 @@ Decrypting
 
 ## Corresponding usage in Objective-C
 
-The AESCrypt Objective-C class understands what you're talking about in your Ruby code. The purpose of the Ruby gem and Objective-C class is to have something that works out of the box across the server (Ruby) and client (Objective-C). However, a standard encryption technique is implemented, which ensures that you can handle the data with any AES compatible library available across the web. So, you're not locked-in.
+The AESCrypt Objective-C class, available at https://github.com/Gurpartap/AESCrypt-ObjC, understands what you're talking about in your Ruby code. The purpose of the Ruby gem and Objective-C class is to have something that works out of the box across the server (Ruby) and client (Objective-C). However, a standard encryption technique is implemented, which ensures that you can handle the data with any AES compatible library available across the web. So, you're not locked-in.
 
 Here's how you would use the AESCrypt Objective-C class:
 
