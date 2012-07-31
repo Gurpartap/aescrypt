@@ -1,4 +1,4 @@
-# AESCrypt - Simple Ruby AES encryption / decryption
+# AESCrypt - Simple AES encryption / decryption for Ruby
 
 AESCrypt is a simple to use, opinionated AES encryption / decryption Ruby gem that just works.
 
