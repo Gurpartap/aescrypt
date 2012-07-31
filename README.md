@@ -2,7 +2,7 @@
 
 AESCrypt is a simple to use, opinionated AES encryption / decryption Ruby gem that just works.
 
-AESCrypt uses the AES-256-CBC cipher and encodes the encrypted data with base64.
+AESCrypt uses the AES-256-CBC cipher and encodes the encrypted data with Base64.
 
 A corresponding gem to easily handle AES encryption / decryption in Objective-C is available at http://github.com/Gurpartap/AESCrypt-ObjC.
 
