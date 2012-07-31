@@ -1,6 +1,6 @@
 # AESCrypt - Simple Ruby AES encryption / decryption
 
-AESCrypt is a simple to use and opinionated AES encryption / decryption Ruby gem that just works.
+AESCrypt is a simple to use, opinionated AES encryption / decryption Ruby gem that just works.
 
 AESCrypt uses the AES-256-CBC cipher and encodes the encrypted data with base64.
 
