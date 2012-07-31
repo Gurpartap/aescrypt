@@ -11,4 +11,6 @@ Gem::Specification.new do |gem|
   gem.name          = "aescrypt"
   gem.require_paths = ["lib"]
   gem.version       = "1.0.0"
+
+  gem.add_development_dependency "rake"
 end
