@@ -49,7 +49,7 @@ The AESCrypt Objective-C class understands what you're talking about in your Rub
 
 Here's how you would use the AESCrypt Objective-C class:
 
-    NSString *message = "top secret message";
+    NSString *message = @"top secret message";
     NSString *password = @"p4ssw0rd";
 
 Encrypting
