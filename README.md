@@ -60,7 +60,7 @@ Decrypting
 
     NSString *message = [AESCrypt decrypt:encryptedData password:password];
 
-See the Objective-C class README http://github.com/Gurpartap/AESCrypt-ObjC for more details.
+See the Objective-C class README at http://github.com/Gurpartap/AESCrypt-ObjC for more details.
 
 ## License
 
