@@ -64,9 +64,9 @@ See the Objective-C class README at http://github.com/Gurpartap/AESCrypt-ObjC fo
 
 ## License
 
-The encrypt_data and decrypt_data methods are Copyright (c) 2007 Brent Sowers and have been included in the gem with prior permission. Thanks Brent! :)
-
 Copyright (c) 2012 Gurpartap Singh
+
+The encrypt_data and decrypt_data methods are Copyright (c) 2007 Brent Sowers and have been included in the gem with prior permission. Thanks Brent! :)
 
 See LICENSE for license terms.
 
