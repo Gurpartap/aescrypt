@@ -27,6 +27,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'openssl'
+require 'base64'
 
 module AESCrypt
   def self.encrypt(message, password)
