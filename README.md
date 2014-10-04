@@ -62,7 +62,7 @@ Decrypting
 
 See the Objective-C class README at http://github.com/Gurpartap/AESCrypt-ObjC for more details.
 
-## Corresponding usage in Java
+## Corresponding usage in Android/Java
 The AESCrypt Java class, available at https://github.com/scottyab/AESCrypt-Android 
 
 Here's how you would use the AESCrypt Java class:
@@ -72,7 +72,7 @@ Here's how you would use the AESCrypt Java class:
 
 Encrypting
 
-    String encryptedData = AESCrypt.encrypt:password, message);
+    String encryptedData = AESCrypt.encrypt(password, message);
 
 Decrypting
 
