@@ -4,7 +4,7 @@ AESCrypt is a simple to use, opinionated AES encryption / decryption Ruby gem th
 
 AESCrypt uses the AES-256-CBC cipher and encodes the encrypted data with Base64.
 
-A corresponding gem to easily handle AES encryption / decryption in Objective-C is available at http://github.com/Gurpartap/AESCrypt-ObjC.
+A corresponding gem to easily handle AES encryption / decryption in Objective-C is available at http://github.com/Gurpartap/AESCrypt-ObjC or Android/Java at https://github.com/scottyab/AESCrypt-Android created by [Scott Alexander-Bown](https://github.com/scottyab) 
 
 ## Installation
 
@@ -61,6 +61,24 @@ Decrypting
     NSString *message = [AESCrypt decrypt:encryptedData password:password];
 
 See the Objective-C class README at http://github.com/Gurpartap/AESCrypt-ObjC for more details.
+
+## Corresponding usage in Java
+The AESCrypt Java class, available at https://github.com/scottyab/AESCrypt-Android 
+
+Here's how you would use the AESCrypt Java class:
+
+    String message = "top secret message";
+    String password = "p4ssw0rd";
+
+Encrypting
+
+    String encryptedData = AESCrypt.encrypt:password, message);
+
+Decrypting
+
+    String message = AESCrypt.decrypt(password, encryptedData);
+    
+
 
 ## License
 
