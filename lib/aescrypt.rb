@@ -31,16 +31,16 @@ require 'base64'
 
 module AESCrypt
   def self.encrypt(message, password)
-    Base64.encode64(self.encrypt_data(message.to_s.strip, self.key_digest(password), nil, "AES-256-CBC"))
+    ::Base64.encode64(self.encrypt_data(message.to_s.strip, self.key_digest(password), nil, "AES-256-CBC"))
   end
 
   def self.decrypt(message, password)
-    base64_decoded = Base64.decode64(message.to_s.strip)
+    base64_decoded = ::Base64.decode64(message.to_s.strip)
     self.decrypt_data(base64_decoded, self.key_digest(password), nil, "AES-256-CBC")
   end
 
   def self.key_digest(password)
-    OpenSSL::Digest::SHA256.new(password).digest
+    ::OpenSSL::Digest::SHA256.new(password).digest
   end
 
   # Decrypts a block of data (encrypted_data) given an encryption key
@@ -55,7 +55,7 @@ module AESCrypt
   #:arg: iv => String
   #:arg: cipher_type => String
   def self.decrypt_data(encrypted_data, key, iv, cipher_type)
-    aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+    aes = ::OpenSSL::Cipher::Cipher.new(cipher_type)
     aes.decrypt
     aes.key = key
     aes.iv = iv if iv != nil
@@ -74,7 +74,7 @@ module AESCrypt
   #:arg: iv => String
   #:arg: cipher_type => String  
   def self.encrypt_data(data, key, iv, cipher_type)
-    aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+    aes = ::OpenSSL::Cipher::Cipher.new(cipher_type)
     aes.encrypt
     aes.key = key
     aes.iv = iv if iv != nil
