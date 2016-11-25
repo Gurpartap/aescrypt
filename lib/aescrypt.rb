@@ -58,8 +58,13 @@ module AESCrypt
     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
     aes.decrypt
     aes.key = key
+
+    if iv.nil? && cipher_type == 'AES-256-CBC'
+      iv = encrypted_data[0..15]
+      encrypted_data = encrypted_data[16..-1]
+    end
     aes.iv = iv if iv != nil
-    aes.update(encrypted_data) + aes.final  
+    aes.update(encrypted_data) + aes.final
   end
 
   # Encrypts a block of data given an encryption key and an 
@@ -77,7 +82,14 @@ module AESCrypt
     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
     aes.encrypt
     aes.key = key
-    aes.iv = iv if iv != nil
-    aes.update(data) + aes.final      
+
+    iv = aes.random_iv if iv.nil? && cipher_type == 'AES-256-CBC'
+
+    if iv.nil?
+      aes.update(data) + aes.final
+    else
+      aes.iv = iv
+      iv + aes.update(data) + aes.final
+    end
   end
 end
