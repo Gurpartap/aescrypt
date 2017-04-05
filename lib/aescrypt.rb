@@ -4,9 +4,9 @@
 # and have been included with prior permission.
 #
 # Copyright (c) 2012 Gurpartap Singh
-# 
+#
 # MIT License
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
@@ -14,10 +14,10 @@
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
 # the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -44,40 +44,40 @@ module AESCrypt
   end
 
   # Decrypts a block of data (encrypted_data) given an encryption key
-  # and an initialization vector (iv).  Keys, iv's, and the data 
+  # and an initialization vector (iv).  Keys, iv's, and the data
   # returned are all binary strings.  Cipher_type should be
   # "AES-256-CBC", "AES-256-ECB", or any of the cipher types
   # supported by OpenSSL.  Pass nil for the iv if the encryption type
   # doesn't use iv's (like ECB).
   #:return: => String
-  #:arg: encrypted_data => String 
+  #:arg: encrypted_data => String
   #:arg: key => String
   #:arg: iv => String
   #:arg: cipher_type => String
   def self.decrypt_data(encrypted_data, key, iv, cipher_type)
-    aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+    aes = OpenSSL::Cipher.new(cipher_type)
     aes.decrypt
     aes.key = key
     aes.iv = iv if iv != nil
-    aes.update(encrypted_data) + aes.final  
+    aes.update(encrypted_data) + aes.final
   end
 
-  # Encrypts a block of data given an encryption key and an 
-  # initialization vector (iv).  Keys, iv's, and the data returned 
+  # Encrypts a block of data given an encryption key and an
+  # initialization vector (iv).  Keys, iv's, and the data returned
   # are all binary strings.  Cipher_type should be "AES-256-CBC",
-  # "AES-256-ECB", or any of the cipher types supported by OpenSSL.  
+  # "AES-256-ECB", or any of the cipher types supported by OpenSSL.
   # Pass nil for the iv if the encryption type doesn't use iv's (like
   # ECB).
   #:return: => String
-  #:arg: data => String 
+  #:arg: data => String
   #:arg: key => String
   #:arg: iv => String
-  #:arg: cipher_type => String  
+  #:arg: cipher_type => String
   def self.encrypt_data(data, key, iv, cipher_type)
-    aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+    aes = OpenSSL::Cipher.new(cipher_type)
     aes.encrypt
     aes.key = key
     aes.iv = iv if iv != nil
-    aes.update(data) + aes.final      
+    aes.update(data) + aes.final
   end
 end
