@@ -41,7 +41,8 @@ module AESCrypt
 
   def self.decrypt(message, password, salt, iv)
     base64_decoded = Base64.decode64(message.to_s.strip)
-    self.decrypt_data(base64_decoded, self.key_digest(password, salt), iv, 'AES-256-CBC')
+    slt, key = self.key_digest(password, salt)
+    self.decrypt_data(base64_decoded, key, iv, 'AES-256-CBC')
   end
 
   def self.key_digest(password, salt = nil)
