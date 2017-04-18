@@ -28,19 +28,26 @@
 
 require 'openssl'
 require 'base64'
+require 'securerandom'
+
+require_relative 'migrator'
 
 module AESCrypt
-  def self.encrypt(message, password)
-    Base64.encode64(self.encrypt_data(message.to_s.strip, self.key_digest(password), nil, "AES-256-CBC"))
+  def self.encrypt(message, password, salt = nil, iv = nil)
+    iv ||= SecureRandom.bytes 16
+    salt, key = self.key_digest(password, salt)
+    return salt, iv, Base64.encode64(self.encrypt_data(message.to_s.strip, key, iv, 'AES-256-CBC'))
   end
 
-  def self.decrypt(message, password)
+  def self.decrypt(message, password, salt, iv)
     base64_decoded = Base64.decode64(message.to_s.strip)
-    self.decrypt_data(base64_decoded, self.key_digest(password), nil, "AES-256-CBC")
+    self.decrypt_data(base64_decoded, self.key_digest(password, salt), iv, 'AES-256-CBC')
   end
 
-  def self.key_digest(password)
-    OpenSSL::Digest::SHA256.new(password).digest
+  def self.key_digest(password, salt = nil)
+    salt ||= SecureRandom.bytes 32
+    digest = OpenSSL::Digest::SHA256.new
+    return salt, OpenSSL::PKCS5.pbkdf2_hmac(password, salt, 10000, digest.digest_length, digest)
   end
 
   # Decrypts a block of data (encrypted_data) given an encryption key
@@ -55,6 +62,8 @@ module AESCrypt
   #:arg: iv => String
   #:arg: cipher_type => String
   def self.decrypt_data(encrypted_data, key, iv, cipher_type)
+    self.warn_if_ecb cipher_type
+
     aes = OpenSSL::Cipher.new(cipher_type)
     aes.decrypt
     aes.key = key
@@ -74,10 +83,23 @@ module AESCrypt
   #:arg: iv => String
   #:arg: cipher_type => String  
   def self.encrypt_data(data, key, iv, cipher_type)
+    self.warn_if_ecb cipher_type
+
     aes = OpenSSL::Cipher.new(cipher_type)
     aes.encrypt
     aes.key = key
     aes.iv = iv if iv != nil
     aes.update(data) + aes.final      
+  end
+
+  private
+  def self.warn_if_ecb(cipher_type)
+    if cipher_type.downcase.include? 'ecb'
+      warn("AESCrypt WARNING: You are using AES in ECB mode. This mode does not effectively hide patterns in " +
+           "plaintext. Unless you know what you're doing and are absolutely sure you need ECB mode, you should use " +
+           "another mode, such as CBC. See " +
+           "http://ruby-doc.org/stdlib-2.0.0/libdoc/openssl/rdoc/OpenSSL/Cipher.html#class-OpenSSL::Cipher-label-Choosing+an+IV " +
+           "for further information.")
+    end
   end
 end
